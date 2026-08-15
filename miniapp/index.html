@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B Teams Shop</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #0f0f12;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: #1a1a20;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .product {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: 0;
+            border-radius: 12px;
+            background: #2ea6ff;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🛒 B Teams Shop</h1>
+    <div class="subtitle">Каталог софтов</div>
+
+    <div class="card">
+        <div class="product">🔹 ZOLO</div>
+
+        <button onclick="selectPlan(1, 100, 250)">
+            1 день — 100 UAH / 250 RUB
+        </button>
+
+        <button onclick="selectPlan(3, 250, 600)">
+            3 дня — 250 UAH / 600 RUB
+        </button>
+
+        <button onclick="selectPlan(7, 400, 950)">
+            7 дней — 400 UAH / 950 RUB
+        </button>
+
+        <button onclick="selectPlan(30, 1000, 2400)">
+            30 дней — 1000 UAH / 2400 RUB
+        </button>
+
+        <button onclick="selectPlan(60, 1700, 4000)">
+            60 дней — 1700 UAH / 4000 RUB
+        </button>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+
+        tg.ready();
+        tg.expand();
+
+        function selectPlan(days, uah, rub) {
+            tg.showPopup({
+                title: "ZOLO",
+                message:
+                    "Срок: " + days + " дней\n\n" +
+                    "🇺🇦 " + uah + " UAH\n" +
+                    "🇷🇺 " + rub + " RUB",
+                buttons: [
+                    {
+                        id: "uah",
+                        type: "default",
+                        text: "🇺🇦 UAH"
+                    },
+                    {
+                        id: "rub",
+                        type: "default",
+                        text: "🇷🇺 RUB"
+                    },
+                    {
+                        type: "cancel"
+                    }
+                ]
+            }, function(buttonId) {
+
+                if (buttonId === "uah") {
+                    tg.sendData(JSON.stringify({
+                        product: "ZOLO",
+                        days: days,
+                        currency: "UAH",
+                        price: uah
+                    }));
+                }
+
+                if (buttonId === "rub") {
+                    tg.sendData(JSON.stringify({
+                        product: "ZOLO",
+                        days: days,
+                        currency: "RUB",
+                        price: rub
+                    }));
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
