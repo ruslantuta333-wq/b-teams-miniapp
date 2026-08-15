@@ -2,62 +2,136 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>B Teams Shop</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 <style>
 *{box-sizing:border-box}
+
 body{
     margin:0;
     padding:18px;
-    background:#0b0d10;
+    background:#0b0d12;
     color:#fff;
     font-family:Arial,sans-serif;
 }
+
 h1{
     text-align:center;
-    margin:8px 0 5px;
+    margin:8px 0;
 }
+
 .subtitle{
     text-align:center;
-    color:#8f969f;
+    color:#9298a3;
     margin-bottom:22px;
 }
+
 .card{
-    background:#15181d;
-    border-radius:18px;
+    background:#151922;
+    border-radius:20px;
     padding:18px;
-    margin-bottom:15px;
+    margin-bottom:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
 }
+
 .title{
     font-size:23px;
-    font-weight:bold;
-    margin-bottom:16px;
+    font-weight:700;
+    margin-bottom:15px;
 }
+
 .plan{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
     width:100%;
-    padding:15px;
-    margin:9px 0;
     border:0;
-    border-radius:13px;
-    background:#20252c;
+    border-radius:15px;
+    padding:16px;
+    margin:8px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#202633;
     color:#fff;
-    text-align:left;
     cursor:pointer;
 }
+
 .plan:active{
     transform:scale(.98);
 }
+
 .days{
-    font-weight:bold;
     font-size:16px;
+    font-weight:700;
 }
+
 .price{
-    color:#bfc5cc;
+    color:#bfc5d0;
     font-size:14px;
+}
+
+.popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    align-items:flex-end;
+    justify-content:center;
+    padding:15px;
+}
+
+.popup-box{
+    width:100%;
+    background:#171b24;
+    border-radius:22px;
+    padding:20px;
+    animation:up .2s ease;
+}
+
+.popup-title{
+    font-size:21px;
+    font-weight:700;
+    text-align:center;
+    margin-bottom:8px;
+}
+
+.popup-info{
+    text-align:center;
+    color:#aeb5c0;
+    margin-bottom:18px;
+}
+
+.pay{
+    width:100%;
+    border:0;
+    border-radius:14px;
+    padding:15px;
+    margin-top:9px;
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.rub{
+    background:#1688ff;
+}
+
+.uah{
+    background:#20b95b;
+}
+
+.buy{
+    background:#e83e91;
+}
+
+.cancel{
+    background:#303641;
+}
+
+@keyframes up{
+    from{transform:translateY(40px);opacity:0}
+    to{transform:translateY(0);opacity:1}
 }
 </style>
 </head>
@@ -65,41 +139,63 @@ h1{
 <body>
 
 <h1>🛒 B Teams Shop</h1>
-<div class="subtitle">Выбери срок ZOLO</div>
+<div class="subtitle">Каталог софтов</div>
 
 <div class="card">
-<div class="title">💎 ZOLO</div>
+    <div class="title">💎 ZOLO</div>
 
-<button class="plan" onclick="selectPlan(1,170,85)">
-    <span class="days">💎 1 Day</span>
-    <span class="price">170 ₽ / 85 ₴</span>
-</button>
+    <button class="plan" onclick="selectPlan(1,170,85)">
+        <span class="days">💎 1 Day</span>
+        <span class="price">170 ₽ / 85 ₴</span>
+    </button>
 
-<button class="plan" onclick="selectPlan(3,400,180)">
-    <span class="days">💎 3 Days</span>
-    <span class="price">400 ₽ / 180 ₴</span>
-</button>
+    <button class="plan" onclick="selectPlan(3,400,180)">
+        <span class="days">💎 3 Days</span>
+        <span class="price">400 ₽ / 180 ₴</span>
+    </button>
 
-<button class="plan" onclick="selectPlan(7,800,325)">
-    <span class="days">💎 7 Days</span>
-    <span class="price">800 ₽ / 325 ₴</span>
-</button>
+    <button class="plan" onclick="selectPlan(7,800,325)">
+        <span class="days">💎 7 Days</span>
+        <span class="price">800 ₽ / 325 ₴</span>
+    </button>
 
-<button class="plan" onclick="selectPlan(14,1000,450)">
-    <span class="days">💎 14 Days</span>
-    <span class="price">1000 ₽ / 450 ₴</span>
-</button>
+    <button class="plan" onclick="selectPlan(14,1000,450)">
+        <span class="days">💎 14 Days</span>
+        <span class="price">1000 ₽ / 450 ₴</span>
+    </button>
 
-<button class="plan" onclick="selectPlan(30,1500,690)">
-    <span class="days">💎 30 Days</span>
-    <span class="price">1500 ₽ / 690 ₴</span>
-</button>
+    <button class="plan" onclick="selectPlan(30,1500,690)">
+        <span class="days">💎 30 Days</span>
+        <span class="price">1500 ₽ / 690 ₴</span>
+    </button>
 
-<button class="plan" onclick="selectPlan(60,2000,1000)">
-    <span class="days">💎 60 Days</span>
-    <span class="price">2000 ₽ / 1000 ₴</span>
-</button>
+    <button class="plan" onclick="selectPlan(60,2000,1000)">
+        <span class="days">💎 60 Days</span>
+        <span class="price">2000 ₽ / 1000 ₴</span>
+    </button>
+</div>
 
+<div id="popup" class="popup">
+    <div class="popup-box">
+        <div class="popup-title">💳 Выберите оплату</div>
+        <div id="info" class="popup-info"></div>
+
+        <button class="pay rub" onclick="pay('RUB')">
+            🔵 Оплатить в RUB
+        </button>
+
+        <button class="pay uah" onclick="pay('UAH')">
+            🟢 Оплатить в UAH
+        </button>
+
+        <button class="pay buy" onclick="buy()">
+            🩷 Перейти к оплате
+        </button>
+
+        <button class="pay cancel" onclick="closePopup()">
+            ✖ Закрыть
+        </button>
+    </div>
 </div>
 
 <script>
@@ -108,48 +204,63 @@ const tg = window.Telegram.WebApp;
 tg.ready();
 tg.expand();
 
-function selectPlan(days, rub, uah) {
-    tg.showPopup({
-        title: "💎 ZOLO",
-        message:
-            "Срок: " + days + " дней\n\n" +
-            "🇷🇺 " + rub + " RUB\n" +
-            "🇺🇦 " + uah + " UAH",
-        buttons: [
-            {
-                id: "rub",
-                type: "default",
-                text: "🇷🇺 RUB"
-            },
-            {
-                id: "uah",
-                type: "default",
-                text: "🇺🇦 UAH"
-            },
-            {
-                type: "cancel"
-            }
-        ]
-    }, function(buttonId) {
+let selected = null;
+let selectedCurrency = null;
 
-        if (buttonId === "rub") {
-            tg.sendData(JSON.stringify({
-                product: "ZOLO",
-                days: days,
-                currency: "RUB",
-                price: rub
-            }));
-        }
+function selectPlan(days, rub, uah){
+    selected = {
+        product: "ZOLO",
+        days: days,
+        rub: rub,
+        uah: uah
+    };
 
-        if (buttonId === "uah") {
-            tg.sendData(JSON.stringify({
-                product: "ZOLO",
-                days: days,
-                currency: "UAH",
-                price: uah
-            }));
-        }
-    });
+    selectedCurrency = null;
+
+    document.getElementById("info").innerText =
+        "💎 ZOLO — " + days + " дней\n\n" +
+        "🇷🇺 " + rub + " RUB\n" +
+        "🇺🇦 " + uah + " UAH";
+
+    document.getElementById("popup").style.display = "flex";
+}
+
+function pay(currency){
+    selectedCurrency = currency;
+
+    const price =
+        currency === "RUB"
+        ? selected.rub
+        : selected.uah;
+
+    document.getElementById("info").innerText =
+        "💎 ZOLO — " + selected.days + " дней\n\n" +
+        "💰 " + price + " " + currency;
+}
+
+function buy(){
+    if(!selectedCurrency){
+        tg.showAlert("Сначала выбери валюту оплаты.");
+        return;
+    }
+
+    const price =
+        selectedCurrency === "RUB"
+        ? selected.rub
+        : selected.uah;
+
+    tg.sendData(JSON.stringify({
+        product: selected.product,
+        days: selected.days,
+        currency: selectedCurrency,
+        price: price
+    }));
+
+    closePopup();
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
 }
 </script>
 
