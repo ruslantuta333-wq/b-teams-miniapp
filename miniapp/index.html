@@ -11,191 +11,252 @@
 
 body{
     margin:0;
-    padding:18px;
-    background:#0b0d12;
+    padding:16px;
+    background:#0e0e0e;
     color:#fff;
     font-family:Arial,sans-serif;
 }
 
-h1{
-    text-align:center;
-    margin:8px 0;
+.container{
+    max-width:520px;
+    margin:auto;
 }
 
-.subtitle{
+.header{
     text-align:center;
-    color:#9298a3;
-    margin-bottom:22px;
+    padding:10px 0 20px;
+}
+
+.header h1{
+    margin:0;
+    font-size:25px;
+}
+
+.header p{
+    margin:7px 0 0;
+    color:#999;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
 }
 
 .card{
-    background:#151922;
-    border-radius:20px;
-    padding:18px;
+    background:#181818;
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:14px;
+}
+
+.product-title{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.product-subtitle{
+    color:#999;
     margin-bottom:16px;
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
 }
 
-.title{
-    font-size:23px;
-    font-weight:700;
-    margin-bottom:15px;
-}
-
-.plan{
+.btn{
     width:100%;
     border:0;
-    border-radius:15px;
-    padding:16px;
-    margin:8px 0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#202633;
-    color:#fff;
+    border-radius:13px;
+    padding:14px;
+    margin:6px 0;
+    background:#f2c300;
+    color:#111;
+    font-size:16px;
+    font-weight:700;
     cursor:pointer;
 }
 
-.plan:active{
+.btn:active{
     transform:scale(.98);
 }
 
-.days{
+.plan{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    text-align:left;
+}
+
+.plan-left{
     font-size:16px;
+}
+
+.plan-right{
+    font-size:14px;
     font-weight:700;
+}
+
+.back{
+    margin-top:12px;
+}
+
+.payment-info{
+    text-align:center;
+    font-size:17px;
+    line-height:1.6;
+    margin-bottom:12px;
 }
 
 .price{
-    color:#bfc5d0;
-    font-size:14px;
-}
-
-.popup{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.72);
-    align-items:flex-end;
-    justify-content:center;
-    padding:15px;
-}
-
-.popup-box{
-    width:100%;
-    background:#171b24;
-    border-radius:22px;
-    padding:20px;
-    animation:up .2s ease;
-}
-
-.popup-title{
-    font-size:21px;
-    font-weight:700;
-    text-align:center;
-    margin-bottom:8px;
-}
-
-.popup-info{
-    text-align:center;
-    color:#aeb5c0;
-    margin-bottom:18px;
-}
-
-.pay{
-    width:100%;
-    border:0;
-    border-radius:14px;
-    padding:15px;
-    margin-top:9px;
-    color:#fff;
-    font-size:16px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.rub{
-    background:#1688ff;
-}
-
-.uah{
-    background:#20b95b;
-}
-
-.buy{
-    background:#e83e91;
-}
-
-.cancel{
-    background:#303641;
-}
-
-@keyframes up{
-    from{transform:translateY(40px);opacity:0}
-    to{transform:translateY(0);opacity:1}
+    font-size:20px;
+    font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🛒 B Teams Shop</h1>
-<div class="subtitle">Каталог софтов</div>
+<div class="container">
 
-<div class="card">
-    <div class="title">💎 ZOLO</div>
-
-    <button class="plan" onclick="selectPlan(1,170,85)">
-        <span class="days">💎 1 Day</span>
-        <span class="price">170 ₽ / 85 ₴</span>
-    </button>
-
-    <button class="plan" onclick="selectPlan(3,400,180)">
-        <span class="days">💎 3 Days</span>
-        <span class="price">400 ₽ / 180 ₴</span>
-    </button>
-
-    <button class="plan" onclick="selectPlan(7,800,325)">
-        <span class="days">💎 7 Days</span>
-        <span class="price">800 ₽ / 325 ₴</span>
-    </button>
-
-    <button class="plan" onclick="selectPlan(14,1000,450)">
-        <span class="days">💎 14 Days</span>
-        <span class="price">1000 ₽ / 450 ₴</span>
-    </button>
-
-    <button class="plan" onclick="selectPlan(30,1500,690)">
-        <span class="days">💎 30 Days</span>
-        <span class="price">1500 ₽ / 690 ₴</span>
-    </button>
-
-    <button class="plan" onclick="selectPlan(60,2000,1000)">
-        <span class="days">💎 60 Days</span>
-        <span class="price">2000 ₽ / 1000 ₴</span>
-    </button>
+<div class="header">
+    <h1>🛒 B Teams Shop</h1>
+    <p>Магазин софтов</p>
 </div>
 
-<div id="popup" class="popup">
-    <div class="popup-box">
-        <div class="popup-title">💳 Выберите оплату</div>
-        <div id="info" class="popup-info"></div>
+<!-- ГЛАВНОЕ МЕНЮ -->
+<div id="home" class="section active">
+    <div class="card">
+        <div class="product-title">🏠 Главное меню</div>
+        <div class="product-subtitle">Выбери нужный раздел</div>
 
-        <button class="pay rub" onclick="pay('RUB')">
-            🔵 Оплатить в RUB
+        <div class="menu">
+            <button class="btn" onclick="openSection('catalog')">
+                🛒 Каталог софтов
+            </button>
+
+            <button class="btn" onclick="openSection('purchases')">
+                🛍 Мои покупки
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- КАТАЛОГ -->
+<div id="catalog" class="section">
+    <div class="card">
+        <div class="product-title">🛒 Каталог софтов</div>
+        <div class="product-subtitle">Выбери софт</div>
+
+        <button class="btn" onclick="openSection('zolo')">
+            💎 ZOLO
         </button>
 
-        <button class="pay uah" onclick="pay('UAH')">
-            🟢 Оплатить в UAH
-        </button>
-
-        <button class="pay buy" onclick="buy()">
-            🩷 Перейти к оплате
-        </button>
-
-        <button class="pay cancel" onclick="closePopup()">
-            ✖ Закрыть
+        <button class="btn back" onclick="openSection('home')">
+            ⬅️ Назад
         </button>
     </div>
+</div>
+
+<!-- ZOLO -->
+<div id="zolo" class="section">
+    <div class="card">
+        <div class="product-title">💎 ZOLO</div>
+        <div class="product-subtitle">Выбери срок подписки</div>
+
+        <button class="btn plan" onclick="selectPlan(1,170,85)">
+            <span class="plan-left">💎 1 Day</span>
+            <span class="plan-right">170₽ / 85₴</span>
+        </button>
+
+        <button class="btn plan" onclick="selectPlan(3,400,180)">
+            <span class="plan-left">💎 3 Days</span>
+            <span class="plan-right">400₽ / 180₴</span>
+        </button>
+
+        <button class="btn plan" onclick="selectPlan(7,800,325)">
+            <span class="plan-left">💎 7 Days</span>
+            <span class="plan-right">800₽ / 325₴</span>
+        </button>
+
+        <button class="btn plan" onclick="selectPlan(14,1000,450)">
+            <span class="plan-left">💎 14 Days</span>
+            <span class="plan-right">1000₽ / 450₴</span>
+        </button>
+
+        <button class="btn plan" onclick="selectPlan(30,1500,690)">
+            <span class="plan-left">💎 30 Days</span>
+            <span class="plan-right">1500₽ / 690₴</span>
+        </button>
+
+        <button class="btn plan" onclick="selectPlan(60,2000,1000)">
+            <span class="plan-left">💎 60 Days</span>
+            <span class="plan-right">2000₽ / 1000₴</span>
+        </button>
+
+        <button class="btn back" onclick="openSection('catalog')">
+            ⬅️ Назад
+        </button>
+    </div>
+</div>
+
+<!-- ВЫБОР ОПЛАТЫ -->
+<div id="payment" class="section">
+    <div class="card">
+        <div class="product-title">💳 Оплата</div>
+
+        <div id="paymentInfo" class="payment-info"></div>
+
+        <button class="btn" onclick="chooseCurrency('RUB')">
+            🇷🇺 Оплата RUB
+        </button>
+
+        <button class="btn" onclick="chooseCurrency('UAH')">
+            🇺🇦 Оплата UAH
+        </button>
+
+        <button class="btn back" onclick="openSection('zolo')">
+            ⬅️ Назад
+        </button>
+    </div>
+</div>
+
+<!-- ПОДТВЕРЖДЕНИЕ -->
+<div id="confirm" class="section">
+    <div class="card">
+        <div class="product-title">✅ Подтверждение</div>
+
+        <div id="confirmInfo" class="payment-info"></div>
+
+        <button class="btn" onclick="sendOrder()">
+            💳 Продолжить оплату
+        </button>
+
+        <button class="btn back" onclick="openSection('payment')">
+            ⬅️ Назад
+        </button>
+    </div>
+</div>
+
+<!-- ПОКУПКИ -->
+<div id="purchases" class="section">
+    <div class="card">
+        <div class="product-title">🛍 Мои покупки</div>
+        <div class="product-subtitle">
+            Здесь будут отображаться приобретённые товары.
+        </div>
+
+        <button class="btn back" onclick="openSection('home')">
+            ⬅️ Назад
+        </button>
+    </div>
+</div>
+
 </div>
 
 <script>
@@ -204,63 +265,75 @@ const tg = window.Telegram.WebApp;
 tg.ready();
 tg.expand();
 
-let selected = null;
+let selectedPlan = null;
 let selectedCurrency = null;
 
-function selectPlan(days, rub, uah){
-    selected = {
-        product: "ZOLO",
-        days: days,
-        rub: rub,
-        uah: uah
+function openSection(id){
+    document.querySelectorAll(".section").forEach(el=>{
+        el.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+function selectPlan(days,rub,uah){
+    selectedPlan={
+        product:"ZOLO",
+        days:days,
+        rub:rub,
+        uah:uah
     };
 
-    selectedCurrency = null;
+    document.getElementById("paymentInfo").innerHTML =
+        "💎 ZOLO<br>" +
+        "⏱ " + days + " дней<br><br>" +
+        "<span class='price'>" +
+        rub + "₽ / " + uah + "₴" +
+        "</span>";
 
-    document.getElementById("info").innerText =
-        "💎 ZOLO — " + days + " дней\n\n" +
-        "🇷🇺 " + rub + " RUB\n" +
-        "🇺🇦 " + uah + " UAH";
-
-    document.getElementById("popup").style.display = "flex";
+    openSection("payment");
 }
 
-function pay(currency){
-    selectedCurrency = currency;
+function chooseCurrency(currency){
+    selectedCurrency=currency;
 
     const price =
-        currency === "RUB"
-        ? selected.rub
-        : selected.uah;
+        currency==="RUB"
+        ? selectedPlan.rub
+        : selectedPlan.uah;
 
-    document.getElementById("info").innerText =
-        "💎 ZOLO — " + selected.days + " дней\n\n" +
-        "💰 " + price + " " + currency;
+    document.getElementById("confirmInfo").innerHTML =
+        "💎 ZOLO<br>" +
+        "⏱ " + selectedPlan.days + " дней<br>" +
+        "💰 <span class='price'>" +
+        price + " " + currency +
+        "</span>";
+
+    openSection("confirm");
 }
 
-function buy(){
-    if(!selectedCurrency){
-        tg.showAlert("Сначала выбери валюту оплаты.");
+function sendOrder(){
+    if(!selectedPlan || !selectedCurrency){
+        tg.showAlert("Сначала выбери тариф и валюту.");
         return;
     }
 
     const price =
-        selectedCurrency === "RUB"
-        ? selected.rub
-        : selected.uah;
+        selectedCurrency==="RUB"
+        ? selectedPlan.rub
+        : selectedPlan.uah;
 
     tg.sendData(JSON.stringify({
-        product: selected.product,
-        days: selected.days,
-        currency: selectedCurrency,
-        price: price
+        product:selectedPlan.product,
+        days:selectedPlan.days,
+        currency:selectedCurrency,
+        price:price
     }));
-
-    closePopup();
-}
-
-function closePopup(){
-    document.getElementById("popup").style.display = "none";
 }
 </script>
 
